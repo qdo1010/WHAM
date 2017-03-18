@@ -65,7 +65,7 @@ Distributed as-is; no warranty is given.
 // Unfortunately, you'll need to include both in the Arduino
 // sketch, before including the SFE_LSM9DS0 library.
 #include <SPI.h> // Included for SFE_LSM9DS0 library
-//#include <Wire.h>
+#include <Wire.h>
 #include "LSM9DS0.h"
 
 ///////////////////////
