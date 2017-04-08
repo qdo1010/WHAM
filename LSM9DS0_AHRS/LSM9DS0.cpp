@@ -26,8 +26,8 @@ Distributed as-is; no warranty is given.
 #include <SPI.h>  // SPI library is used for...SPI.
 #define SDA_PORT PORTB
 #define SDA_PIN 6
-#define SCL_PORT PORTB
-#define SCL_PIN 5
+#define SCL_PORT PORTD
+#define SCL_PIN 6
 #include "SoftWire.h"
 SoftWire Wire_1 = SoftWire();
 
