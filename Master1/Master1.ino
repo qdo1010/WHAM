@@ -1,8 +1,11 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-#define P2P_SERIAL_RX 10
-#define P2P_SERIAL_TX 11
+//#define P2P_SERIAL_RX 10
+//#define P2P_SERIAL_TX 11
+//10 and 11 is for Arduino UNO, 9 and 6 should work w Flora
+#define P2P_SERIAL_RX 9
+#define P2P_SERIAL_TX 6
 
 boolean lookUpPresence[128];
 int lookUpNumberOfSensors[128];
@@ -33,9 +36,9 @@ void loop() {
   for(int i=0; i<128; i++) { 
     if(lookUpPresence[i]) { 
       if (i == 8 ) {
-      requestFromDevice(i,18); //this is for the motion sensor 
+      requestFromDevice(i,12); //this is for the motion sensor 
     }
-    else requestFromDevice(i,18);
+    else requestFromDevice(i,12);
     }
   }//end for
 
@@ -64,7 +67,7 @@ void findWhoIsAround()
 {
   for (int i=0; i<128; i++)
   {
-    requestFromDeviceDuringStart(i,14);
+    requestFromDeviceDuringStart(i,2);
     if(deviceID==i)
     {
        Serial.print(i);
@@ -121,6 +124,7 @@ void requestFromDevice(int device, int bytes){
 //      Serial.print(",");
       for(int i=0; i<bytes; i = i+2) { 
         Serial.print((inputArray[i+1]<<8) + inputArray[i]);
+        //Serial.print(inputArray[i+1]);
         if (i==bytes-2) { 
         //DO nothing
           }

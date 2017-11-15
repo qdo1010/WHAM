@@ -29,9 +29,7 @@ the only connections that need to be made:
   LSM9DS0 --------- Arduino
    SCL ---------- SCL (A5 on older 'Duinos')
    SDA ---------- SDA (A4 on older 'Duinos')
-      I  5V ------------- 5V
-Power I          or
-      I  3.3V ------------3.3V
+   VDD ------------- 3.3V
    GND ------------- GND
 (CSG, CSXM, SDOG, and SDOXM should all be pulled high jumpers on 
   the breakout board will do this for you.)
@@ -125,11 +123,10 @@ void loop()
   printMag();   // Print "M: mx, my, mz"
   
   // Print the heading and orientation for fun!
-  
+  printHeading((float) dof.mx, (float) dof.my);
   printOrientation(dof.calcAccel(dof.ax), dof.calcAccel(dof.ay), 
                    dof.calcAccel(dof.az));
-  printHeading((float) dof.mx, (float) dof.my);
- //  Serial.println();
+  Serial.println();
   
   delay(PRINT_SPEED);
 }
@@ -143,20 +140,22 @@ void printGyro()
   
   // Now we can use the gx, gy, and gz variables as we please.
   // Either print them as raw ADC values, or calculated in DPS.
-  
+  Serial.print("G: ");
 #ifdef PRINT_CALCULATED
   // If you want to print calculated values, you can use the
   // calcGyro helper function to convert a raw ADC value to
   // DPS. Give the function the value that you want to convert.
-  dof.calcGyro(dof.gx);
-  dof.calcGyro(dof.gy);
-  dof.calcGyro(dof.gz);
-  /*Serial.print(dof.calcGyro(dof.gx), 2);
+  Serial.print(dof.calcGyro(dof.gx), 2);
   Serial.print(", ");
   Serial.print(dof.calcGyro(dof.gy), 2);
   Serial.print(", ");
-  Serial.println(dof.calcGyro(dof.gz), 2);*/
-
+  Serial.println(dof.calcGyro(dof.gz), 2);
+#elif defined PRINT_RAW
+  Serial.print(dof.gx);
+  Serial.print(", ");
+  Serial.print(dof.gy);
+  Serial.print(", ");
+  Serial.println(dof.gz);
 #endif
 }
 
@@ -169,17 +168,22 @@ void printAccel()
   
   // Now we can use the ax, ay, and az variables as we please.
   // Either print them as raw ADC values, or calculated in g's.
-  
+  Serial.print("A: ");
 #ifdef PRINT_CALCULATED
   // If you want to print calculated values, you can use the
   // calcAccel helper function to convert a raw ADC value to
   // g's. Give the function the value that you want to convert.
-  dof.calcAccel(dof.ax);
- // Serial.print(", ");
-  dof.calcAccel(dof.ay);
-  //Serial.print(", ");
-  dof.calcAccel(dof.az);
-
+  Serial.print(dof.calcAccel(dof.ax), 2);
+  Serial.print(", ");
+  Serial.print(dof.calcAccel(dof.ay), 2);
+  Serial.print(", ");
+  Serial.println(dof.calcAccel(dof.az), 2);
+#elif defined PRINT_RAW 
+  Serial.print(dof.ax);
+  Serial.print(", ");
+  Serial.print(dof.ay);
+  Serial.print(", ");
+  Serial.println(dof.az);
 #endif
 
 }
@@ -193,17 +197,22 @@ void printMag()
   
   // Now we can use the mx, my, and mz variables as we please.
   // Either print them as raw ADC values, or calculated in Gauss.
-//  Serial.print("M: ");
+  Serial.print("M: ");
 #ifdef PRINT_CALCULATED
   // If you want to print calculated values, you can use the
   // calcMag helper function to convert a raw ADC value to
   // Gauss. Give the function the value that you want to convert.
-  dof.calcMag(dof.mx);
-  
- dof.calcMag(dof.my);
-  
-  dof.calcMag(dof.mz);
-
+  Serial.print(dof.calcMag(dof.mx), 2);
+  Serial.print(", ");
+  Serial.print(dof.calcMag(dof.my), 2);
+  Serial.print(", ");
+  Serial.println(dof.calcMag(dof.mz), 2);
+#elif defined PRINT_RAW
+  Serial.print(dof.mx);
+  Serial.print(", ");
+  Serial.print(dof.my);
+  Serial.print(", ");
+  Serial.println(dof.mz);
 #endif
 }
 
@@ -231,9 +240,8 @@ void printHeading(float hx, float hy)
     else heading = 0;
   }
   
-//  Serial.print("Heading: ");
-  Serial.print(heading);
-  Serial.println(F(" "));
+  Serial.print("Heading: ");
+  Serial.println(heading, 2);
 }
 
 // Another fun function that does calculations based on the
@@ -248,12 +256,8 @@ void printOrientation(float x, float y, float z)
   pitch *= 180.0 / PI;
   roll *= 180.0 / PI;
   
-   Serial.print(F("Orientation: "));
-
-  
-    Serial.print(roll);
-    Serial.print(F(" "));
-    Serial.print(pitch);
-    Serial.print(F(" "));
-    //Serial.print(roll, 2);
+  Serial.print("Pitch, Roll: ");
+  Serial.print(pitch, 2);
+  Serial.print(", ");
+  Serial.println(roll, 2);
 }
