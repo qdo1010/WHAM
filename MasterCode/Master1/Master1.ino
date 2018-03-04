@@ -1,11 +1,11 @@
 #include <Wire.h>
 #include <SoftwareSerial.h>
 
-//#define P2P_SERIAL_RX 10
-//#define P2P_SERIAL_TX 11
+#define P2P_SERIAL_RX 10
+#define P2P_SERIAL_TX 11
 //10 and 11 is for Arduino UNO, 9 and 6 should work w Flora
-#define P2P_SERIAL_RX 9
-#define P2P_SERIAL_TX 6
+//#define P2P_SERIAL_RX 9
+//#define P2P_SERIAL_TX 6
 
 boolean lookUpPresence[128];
 int lookUpNumberOfSensors[128];
@@ -36,9 +36,9 @@ void loop() {
   for(int i=0; i<128; i++) { 
     if(lookUpPresence[i]) { 
       if (i == 8 ) {
-      requestFromDevice(i,12); //this is for the motion sensor 
+      requestFromDevice(i,8); //this is for the motion sensor 
     }
-    else requestFromDevice(i,12);
+    else requestFromDevice(i,8);
     }
   }//end for
 
@@ -91,6 +91,7 @@ void requestFromDevice(int device, int bytes){
       while(Wire.available())    
       { 
         unsigned char c= Wire.read(); 
+        Serial.println(c);
         inputArray[x] = c; 
         x++;   
       }//end while 
@@ -103,7 +104,7 @@ void requestFromDevice(int device, int bytes){
       
       byte *mypointer; 
       mypointer = dataArray;
-      byte crc8 = CRC8(mypointer, 16);
+      byte crc8 = CRC8(mypointer, 6);
       byte crc8in = inputArray[bytes-2];
       
       if(crc8 == crc8in) { 
@@ -123,8 +124,8 @@ void requestFromDevice(int device, int bytes){
 //      Serial.print(device);
 //      Serial.print(",");
       for(int i=0; i<bytes; i = i+2) { 
-        Serial.print((inputArray[i+1]<<8) + inputArray[i]);
-        //Serial.print(inputArray[i+1]);
+       // Serial.print((inputArray[i+1]<<8) + inputArray[i]);
+        Serial.print(inputArray[i] );
         if (i==bytes-2) { 
         //DO nothing
           }
@@ -134,6 +135,16 @@ void requestFromDevice(int device, int bytes){
       Serial.println(" ");
       deviceID = (inputArray[1]<<8) + inputArray[0]; 
       //Serial.println(deviceID);
+            
+     /*for(int i=0; i<bytes-2; i++) { 
+       Serial.print(dataArray[i],HEX); 
+       Serial.print(","); 
+     }
+     Serial.print(",");
+      Serial.print(crc8);
+      Serial.print(","); 
+      Serial.print(crc8in);
+      Serial.println(" ");*/
       
       
    }//end if 
@@ -156,6 +167,8 @@ void requestFromDevice(int device, int bytes){
       Serial.println(" ");
       deviceID = device; 
       //Serial.println(deviceID); 
+      
+      
      
    }
 }
