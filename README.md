@@ -5,11 +5,11 @@
 
 
 ## Overview 
-* RF Network contains Code to connect multiple Arduinos to 1 via RF with RF24 Library. (This is Work in Progress)
+* [RF Network](https://github.com/qhdo1010/WHAM/tree/master/RF_Network) contains Code to connect multiple Arduinos to 1 via RF with RF24 Library. (This is Work in Progress)
 
-* LSM9DS0 contains code to read data from the current 9DOF IMU being used. (This is for reference)
+* [LSM9DS0](https://github.com/qhdo1010/WHAM/tree/master/LSM9DS0) contains code to read data from the current 9DOF IMU being used. (This is for reference)
 
-* Previous Codes contain Interfacing with Bluetooth Module, Sending data to Phone, Sending Data to Matlab, and Code for previous IMU no longer being used 
+* [Previous Codes](https://github.com/qhdo1010/WHAM/tree/master/Previous%20Codes) contain Interfacing with Bluetooth Module, Sending data to Phone, Sending Data to Matlab, and Code for previous IMU no longer being used 
 
 ## Current Progress
 
