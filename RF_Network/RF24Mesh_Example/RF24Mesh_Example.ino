@@ -12,13 +12,19 @@
 #include "RF24Network.h"
 #include "RF24Mesh.h"
 #include <SPI.h>
+#include <Wire.h>
+
+#include "LSM9DS0.h"
+
 //#include <printf.h>
 
-
+#define LSM9DS0_XM  0x1D // Would be 0x1E if SDO_XM is LOW
+#define LSM9DS0_G   0x6B // Would be 0x6A if SDO_G is LOW
 /**** Configure the nrf24l01 CE and CS pins ****/
-RF24 radio(9, 10);
+RF24 radio(6, 12);
 RF24Network network(radio);
 RF24Mesh mesh(radio, network);
+LSM9DS0 dof(MODE_I2C, LSM9DS0_G, LSM9DS0_XM);
 
 /**
    User Configuration: nodeID - A unique identifier for each radio. Allows addressing
@@ -45,6 +51,8 @@ void setup() {
   //printf_begin();
   // Set the nodeID manually
   mesh.setNodeID(nodeID);
+    uint16_t status = dof.begin();
+
   // Connect to the mesh
   Serial.println(F("Connecting to the mesh..."));
   mesh.begin();
@@ -73,6 +81,11 @@ void loop() {
       }
     } else {
       Serial.print("Send OK: "); Serial.println(displayTimer);
+       dof.readGyro();
+       dof.calcGyro(dof.gx);
+      Serial.print(dof.calcGyro(dof.gx), 2);
+
+       
     }
   }
 

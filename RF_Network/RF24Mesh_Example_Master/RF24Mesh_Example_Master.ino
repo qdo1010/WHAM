@@ -54,7 +54,7 @@ void loop() {
     RF24NetworkHeader header;
     network.peek(header);
     
-    uint32_t dat=0;
+    String dat;
     switch(header.type){
       // Display the incoming millis() values from the sensor nodes
       case 'M': network.read(header,&dat,sizeof(dat)); Serial.println(dat); break;
