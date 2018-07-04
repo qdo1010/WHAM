@@ -6,7 +6,7 @@ This contains code/attempts to combine RF network code with Sensor Data from the
 
 * We also want to deploy RF24Mesh_Example_Master to an Arduino Uno connected to a RF Module and a Bluetooth Module as well.
 
-* Basically, RF24Mesh_Example will read 9 datapoints from the LSM9DS0 (acc_x,acc_y,acc_z,gyr_x,gyr_y,gyr_z,mag_x,mag_y,mag_z)
+* Basically, RF24Mesh_Example will read 9 datapoints from the LSM9DS0 (acc_x, acc_y, acc_z, gyr_x, gyr_y, gyr_z, mag_x, mag_y, mag_z)
 
 * Then, this code will send those datapoints to a Master via RF Network.
 
