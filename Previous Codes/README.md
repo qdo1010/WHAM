@@ -1,12 +1,12 @@
 # Overview
 
-1) In the past, we used only 1 Arduino Nano, and we have only 1 sensor, called MPU6050 that we use to collect movement information.
+**1) In the past, we used only 1 Arduino Nano, and we have only 1 sensor, called MPU6050 that we use to collect movement information.**
 
 * The user would put on a wristband that houses the Nano and MPU6050, and there would be a Bluetooth Module inside that send the movement info to an iPhone.
 
 * We also have the wristband send those data to MATLAB, so we can plot what's going on, but that's through an USB cable.
 
-2) We then decided to integrate more sensors throughout the body, not just on the wrist, so we can capture more relevant info from the users.
+**2) We then decided to integrate more sensors throughout the body, not just on the wrist, so we can capture more relevant info from the users.**
 
 *Thus, we decided to make a Sensor Network on a T-Shirt, and our first attempt was one connected via I2C, inspired by this project: https://github.com/ResEnv/SensorTape*
 
@@ -20,7 +20,7 @@
 
 *However, we soon realized it's very time consuming to connect those sensors with conductive threads, and it's very bulky and user-unfriendly with just regular wires. This would be extremely difficult to scale with limited resources.*
 
-3) We decided to move on to building a Mesh RF Network, and this is what we have been trying to work on ever since.
+**3) We decided to move on to building a Mesh RF Network, and this is what we have been trying to work on ever since.**
 
 *Basically, we just want a Small Button or Pin that users can buy and attach to anywhere on their body, and with multiple of those Button/Pin, we can have full body tracking at the user's convienence.*
 
