@@ -19,4 +19,4 @@
 
 * Once clean data can be received by the Master, we want to integrate Bluetooth Code, to send those datapoints from Master to a SmartPhone via Bluetooth.
 
-* Once all the steps above are completed, we can then add more sensors to collect more useful data, instead of just Motion/Movement Info
+* Once all the steps above are completed, we can then add more sensors to collect more useful data, instead of just Motion/Movement Info, for instance Heart Rate, Respiration, EMG, etc.
