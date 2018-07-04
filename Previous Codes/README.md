@@ -28,6 +28,6 @@
 
 * Everything will be done through the air with a cheap RF module attached to each Sensor node.
 
-* Each Slave will be hardcoded with an ID called NodeID, and they will constantly be broasting their data, similar to a Radio Station, and the Master will act as a Radio Receiver, tuning in to those data.
+* Each Slave will be hardcoded with an ID called NodeID, and they will constantly be broadcasting their data, similar to a Radio Station, and the Master will act as a Radio Receiver, tuning in to those data.
 
 *With this approach, we can add as many sensors as we would like, and whereever we want, since we are not restricted to just a Sensors being wired up on a T-Shirt.*
