@@ -1,5 +1,9 @@
 # WHAM
 
+## Project History
+[What we did and are currently working on](https://github.com/qhdo1010/WHAM/tree/master/Previous%20Codes)
+
+
 ## Overview 
 * RF Network contains Code to connect multiple Arduinos to 1 via RF with RF24 Library. (This is Work in Progress)
 
