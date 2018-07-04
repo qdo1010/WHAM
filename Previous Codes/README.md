@@ -22,7 +22,7 @@
 
 **3) We decided to move on to building a Mesh RF Network, and this is what we have been trying to work on ever since.**
 
-*Basically, we just want a Small Button or Pin that users can buy and attach to anywhere on their body, and with multiple of those Button/Pin, we can have full body tracking at the user's convienence.*
+*Basically, we just want a Small Button or Pin that users can buy and attach to anywhere on their body, and with multiple of those Button/Pins containing various sensors, we can have full body tracking at the user's convienence.*
 
 * This would follow the same concept as part 2, where we would have 1 Master and multiple Slave Nodes. Except there will be no wire, and no sequential query from Master to automatically assign ID.
 
